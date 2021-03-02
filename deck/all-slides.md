@@ -77,8 +77,8 @@ Availability zone a           Availability zone b
 #-------------------------.   #-------------------------#
 |[w]                      | | |[w]                      |
 | Container    .----------#   | Container    .----------#
-|              |[e] Store | | |              |[e] Store |
-#--------------#----------#   #--------------#----------#
+|              |[e] Store | | |              |[e] Store |  <-- That's NOT
+#--------------#----------#   #--------------#----------#      how this works
 |[w]                      | | |[w]                      |
 | Host                    |   | Host                    |
 | [zone=a]                | | | [zone=b]                |
@@ -128,11 +128,11 @@ Availability zone a           Availability zone b
 |[w]                      | | |[w]                      |          |
 | Host          .---------#   | Host          .---------#          |
 | [zone=a]      |[e]Drive | | | [zone=b]      |[e]Drive |          |
-'---------------#------#--#   '---------------#------#--#          |
-                       ^    |                        ^             | 
-Availability zone a    |      Availability zone b    |             |
-                       '-----------------------------#-------------'
-                                             mount RWO
+'---------------#---------#   '---------------#------#--#          |
+                            |                        ^             | 
+Availability zone a           Availability zone b    |             |
+                                                     '-------------'
+                                                        mount RWO
 [c]: {"a2s:type": "cloud", "a2s:delref": true, "fill": "#fff", "fillStyle": "solid"}
 [w]: {"a2s:delref": true, "fill": "#fff", "fillStyle": "solid", "strokeStyle": "#000"}
 [g]: {"a2s:delref": true, "fill": "transparent", "fillStyle": "solid", "strokeStyle": "#000"}
@@ -191,7 +191,7 @@ Availability zone a    |      Availability zone b    |             |
 
 # TIMELINES {#timelines .light-on-dark bg="#6a2469"}
 
-`<smaller>`{=html}IDENTITY, NETWORK, STORAGE`</smaller>`{=html}
+`<smaller>`{=html}IDENTITY, NETWORK, STORAGE AND STATE`</smaller>`{=html}
 
 <!-- section 6 -->
 
@@ -238,7 +238,7 @@ Network policies have arguably been less successful. The question is whether net
 ```
 <!-- section 8 -->
 
-# STORAGE {#storage bg="#97dce7"}
+# STORAGE AND STATE {#storage-and-state bg="#97dce7"}
 
 ``` {.render_plantuml args="-Sbackgroundcolor=transparent"}
 @startuml
@@ -256,7 +256,7 @@ Kubernetes->"CoreOS Tectonic" : Custom Resource Definitions
 
 <!-- section 9 -->
 
-# RECREATING THE DATACENTRE {#recreating-the-datacentre bg="#97dce7"}
+# REBUILDING THE DATACENTRE {#rebuilding-the-datacentre bg="#97dce7"}
 
 ``` {.render_a2sketch}
 .--------------------------------------------------------------------------------------#
@@ -284,90 +284,9 @@ Kubernetes->"CoreOS Tectonic" : Custom Resource Definitions
 
 <!-- section 10 -->
 
-# THE OPERATOR LIFE {#the-operator-life .light-on-dark bg="#6a2469"}
-
-<!-- section 11 -->
-
-# OPERATORS {#operators bg="#fff44d"}
-
-``` {.render_a2sketch}
-#--------------------------#     #-------------------------#       
-|[p]                       |     |[b]                      |      
-|                          |     |                         |      
-|                          |     |                         |      
-|Custom Resource Definition+--+--+        Controller       |       
-|                          |  |  |                         |      
-|  (e.g. "VaultService")   |  |  | (backup, upgrade, etc.) |      
-|                          |  |  |                         |      
-|                          |  |  |                         |      
-#--------------------------#  |  #-------------------------#       
-                              |
-                              |
-                              v
-                 #------------+-------------#  
-                 |[s]                       | 
-                 |                          | 
-                 |                          |  
-                 |                          | 
-                 |                          | 
-                 |   Cluster state (etcd)   |  
-                 |                          | 
-                 |    PersistentVolumes     |  
-                 |                          | 
-                 |        ConfigMaps        |  
-                 |                          | 
-                 |          Secrets         |  
-                 #--------------------------#  
-
-
-[p]: {"a2s:delref": true, "fill": "#ef5ba1", "fillStyle": "solid", "strokeStyle": "#000"}
-[b]: {"a2s:delref": true, "fill": "#f99c41", "fillStyle": "solid", "strokeStyle": "#000"}
-[s]: {"a2s:type":"storage", "a2s:delref": true, "fillStyle": "solid", "fill": "#ffffff"}
-```
-
-<!-- section 12 -->
-
-# STATEFUL WORKLOADS {#stateful-workloads bg="#97dce7"}
-
-``` {.render_a2sketch}
-#------------------------------------------------------------------#
-|[q]                                                               |
-|                                                                  |
-|                                                                  |
-|                                                                  |
-|    Stateless is Easy, Stateful is Hard.                          |
-|                                                                  |
-|                                   - Brandon Philips (2016)       |
-|                                                                  |
-|                                                                  |
-|                                                                  |
-#------------------------------------------------------------------#
-
-[q]: {"a2s:type": "quote-sw", "a2s:delref": true, "fill": "#ef5ba1", "fillStyle": "solid"}
-```
-
-::: {.tiny}
-Source: `<a href="https://coreos.com/blog/introducing-operators.html">`{=html}coreos.com/blog/introducing-operators.html`</a>`{=html}
-:::
-
-<!-- section 13 -->
-
-# CORPORATE SPONSORS {#corporate-sponsors bg="#fff44d"}
-
-Vault operator`<br/>`{=html}
-`<img src="assets/img/CoreOS.svg" width="200px"/>`{=html}
-
-MySQL operator`<br/>`{=html}
-`<img src="assets/img/Oracle_logo.svg" width="200px"/>`{=html}
-
-PostgreSQL operator`<br/>`{=html}
-`<img src="assets/img/Zalando_logo.svg" width="200px"/>`{=html}
-
-<!-- section 14 -->
-
 # ECOSYSTEM RESILIENCE {#ecosystem-resilience .light-on-dark bg="#6a2469"}
 
-<!-- section 15 -->
+<!-- section 11 -->
 
 # SHARED OWNERSHIP {#shared-ownership bg="#97dce7"}
 
@@ -410,7 +329,7 @@ PostgreSQL operator`<br/>`{=html}
 [t]: {"a2s:delref": true, "fill": "transparent", "fillStyle": "solid", "strokeStyle": "#000"}
 ```
 
-<!-- section 16 -->
+<!-- section 12 -->
 
 # PRECONDITIONS {#preconditions bg="#97dce7"}
 
@@ -437,7 +356,7 @@ PostgreSQL operator`<br/>`{=html}
 
 ```
 
-<!-- section 17 -->
+<!-- section 13 -->
 
 # PRECONDITIONS {#preconditions-1 bg="#97dce7"}
 
@@ -465,7 +384,7 @@ PostgreSQL operator`<br/>`{=html}
 
 A suitably permissive license is a necessary but not sufficient precondition.
 
-<!-- section 18 -->
+<!-- section 14 -->
 
 # PRECONDITIONS {#preconditions-2 bg="#97dce7"}
 
@@ -491,7 +410,7 @@ A suitably permissive license is a necessary but not sufficient precondition.
 [e]: {"a2s:delref": true, "fill": "#00aa5b", "fillStyle": "solid", "strokeStyle": "#000"}
 ```
 
-<!-- section 19 -->
+<!-- section 15 -->
 
 # PRECONDITIONS {#preconditions-3 bg="#97dce7"}
 
@@ -522,7 +441,7 @@ A suitably permissive license is a necessary but not sufficient precondition.
 Source: `<a href="https://twitter.com/mattklein123/status/1229513052673855488?ref_src=twsrc%5Etfw">`{=html}@mattklein123 on Twitter`</a>`{=html}, 17 February 2020.
 :::
 
-<!-- section 20 -->
+<!-- section 16 -->
 
 # PRECONDITIONS {#preconditions-4 bg="#97dce7"}
 
@@ -552,13 +471,94 @@ Source: `<a href="https://twitter.com/mattklein123/status/1229513052673855488?re
 
 When paired with custom resource definitions, they are known as **operators**.
 
+<!-- section 17 -->
+
+# THE OPERATOR LIFE {#the-operator-life .light-on-dark bg="#6a2469"}
+
+<!-- section 18 -->
+
+# OPERATORS {#operators bg="#fff44d"}
+
+``` {.render_a2sketch}
+#--------------------------#     #-------------------------#       
+|[p]                       |     |[b]                      |      
+|                          |     |                         |      
+|                          |     |                         |      
+|Custom Resource Definition+--+--+        Controller       |       
+|                          |  |  |                         |      
+|  (e.g. "VaultService")   |  |  | (backup, upgrade, etc.) |      
+|                          |  |  |                         |      
+|                          |  |  |                         |      
+#--------------------------#  |  #-------------------------#       
+                              |
+                              |
+                              v
+                 #------------+-------------#  
+                 |[s]                       | 
+                 |                          | 
+                 |                          |  
+                 |                          | 
+                 |                          | 
+                 |   Cluster state (etcd)   |  
+                 |                          | 
+                 |    PersistentVolumes     |  
+                 |                          | 
+                 |        ConfigMaps        |  
+                 |                          | 
+                 |          Secrets         |  
+                 #--------------------------#  
+
+
+[p]: {"a2s:delref": true, "fill": "#ef5ba1", "fillStyle": "solid", "strokeStyle": "#000"}
+[b]: {"a2s:delref": true, "fill": "#f99c41", "fillStyle": "solid", "strokeStyle": "#000"}
+[s]: {"a2s:type":"storage", "a2s:delref": true, "fillStyle": "solid", "fill": "#ffffff"}
+```
+
+<!-- section 19 -->
+
+# CORPORATE SPONSORS {#corporate-sponsors bg="#fff44d"}
+
+Vault operator`<br/>`{=html}
+`<img src="assets/img/CoreOS.svg" width="200px"/>`{=html}
+
+MySQL operator`<br/>`{=html}
+`<img src="assets/img/Oracle_logo.svg" width="200px"/>`{=html}
+
+PostgreSQL operator`<br/>`{=html}
+`<img src="assets/img/Zalando_logo.svg" width="200px"/>`{=html}
+
+<!-- section 20 -->
+
+# STATEFUL WORKLOADS {#stateful-workloads bg="#97dce7"}
+
+``` {.render_a2sketch}
+#------------------------------------------------------------------#
+|[q]                                                               |
+|                                                                  |
+|                                                                  |
+|                                                                  |
+|    Stateless is Easy, Stateful is Hard.                          |
+|                                                                  |
+|                                   - Brandon Philips (2016)       |
+|                                                                  |
+|                                                                  |
+|                                                                  |
+#------------------------------------------------------------------#
+
+[q]: {"a2s:type": "quote-sw", "a2s:delref": true, "fill": "#ef5ba1", "fillStyle": "solid"}
+```
+
+::: {.tiny}
+Source: `<a href="https://coreos.com/blog/introducing-operators.html">`{=html}coreos.com/blog/introducing-operators.html`</a>`{=html}
+:::
+
 <!-- section 21 -->
 
 # SOUL-SEARCHING AT THE BAZAAR {#soul-searching-at-the-bazaar .light-on-dark bg="#6a2469"}
 
 <!-- section 22 -->
 
-# FALLING OUT OVER STORAGE {#falling-out-over-storage bg="#97dce7"}
+# FALLING OUT OVER DATA MANAGEMENT {#falling-out-over-data-management bg="#97dce7"}
 
 ``` {.render_a2sketch}
      #-----------------------------------------------------------#
@@ -931,9 +931,8 @@ on their etcd operator              There is also CNCF graduate project Vitess
      #-------+-------------------------------------------+-------#     
              |                                           |   
 Note that this is not "Hudson"       First-party operator by Confluent
-UI requires VMware Octant with       One alternative is the RabbitMQ
-ocant-jx plugin                      Cluster Operator
-
+UI requires VMware Octant with       One promising alternative is the
+octant-jx plugin                     RabbitMQ Cluster Operator
 
 [w]: {"a2s:delref": true, "fill": "#fff", "fillStyle": "solid"}
 [p]: {"a2s:delref": true, "fill": "#ef5ba1", "fillStyle": "solid", "strokeStyle": "#000"}
@@ -943,6 +942,18 @@ ocant-jx plugin                      Cluster Operator
 ```
 
 <!-- section 31 -->
+
+# SUMMARY {#summary .light-on-dark bg="#6a2469"}
+
+Persistent cloud storage is just as reliable when claimed by a pod
+
+The core Kuberenetes interfaces will continue to mature because everyone in the industry has a stake in it
+
+The operator pattern is set to thrive because software companies and second-tier cloud vendors depend on it
+
+Of all the large, distributed systems found in modern application architectures, only Kubernetes promises a huge reduction in complexity in return
+
+<!-- section 32 -->
 
 # THANK YOU {#thank-you .light-on-dark bgcss="tw-colorful"}
 
