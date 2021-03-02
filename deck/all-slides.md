@@ -591,7 +591,7 @@ Source: `<a href="https://coreos.com/blog/introducing-operators.html">`{=html}co
 
 Cloud vendors perfected the use of proprietary services based on open source products, putting companies creating those products on notice.
 
-In 2016 MongoDB Inc. responded with the `<a href="https://www.mongodb.com/community/licensing">`{=html}Server Side Public License`</a>`{=html}.
+In 2018 MongoDB Inc. responded with the `<a href="https://www.mongodb.com/community/licensing">`{=html}Server Side Public License`</a>`{=html}.
 
 <!-- section 23 -->
 
@@ -952,7 +952,7 @@ Create one path to production for all workloads (not three separate ones for con
 
 Enabling zero trust and mutual TLS is much easier, and again you only do it once
 
-Continuous reconciliation based on policies you define beats defining desired state at the start and hoping for the best
+Continuous reconciliation based on policies you define beats setting desired state at the start and hoping for the best
 
 <!-- section 32 -->
 

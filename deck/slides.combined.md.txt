@@ -1,8 +1,6 @@
 ---
 title: Stateful Kubernetes
 pdf: stateful-kubernetes.pdf
-pdf_size: 1280x720
-pdf_delay: 100
 slideNumber: false
 controls: false
 backgroundTransition: fade
@@ -558,7 +556,7 @@ PostgreSQL operator<br/>
 
 Cloud vendors perfected the use of proprietary services based on open source products, putting companies creating those products on notice.
 
-In 2016 MongoDB Inc. responded with the <a href="https://www.mongodb.com/community/licensing">Server Side Public License</a>.
+In 2018 MongoDB Inc. responded with the <a href="https://www.mongodb.com/community/licensing">Server Side Public License</a>.
 
 # A PORTABLE STACK {bg=#97dce7}
 
@@ -891,7 +889,7 @@ Create one path to production for all workloads (not three separate ones for con
 
 Enabling zero trust and mutual TLS is much easier, and again you only do it once
 
-Continuous reconciliation based on policies you define beats defining desired state at the start and hoping for the best
+Continuous reconciliation based on policies you define beats setting desired state at the start and hoping for the best
 
 # SUMMARY {bg=#6a2469 .light-on-dark}
 
