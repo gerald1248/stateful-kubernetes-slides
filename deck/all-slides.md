@@ -268,7 +268,7 @@ Kubernetes->"CoreOS Tectonic" : Custom Resource Definitions
 |                             Role-based access control                                |
 |                                                                                      |
 #----------------------------#----------------------------#----------------------------#
-|[w]                         |[d]                         |[e]                         |
+|[d]                         |[d]                         |[e]                         |
 |Container runtime interface |Container network interface |Container storage interface |
 |                            |                            |                            |
 #----------------------------#----------------------------#----------------------------#
@@ -280,6 +280,7 @@ Kubernetes->"CoreOS Tectonic" : Custom Resource Definitions
 [e]: {"a2s:delref": true, "fill": "#00aa5b", "fillStyle": "solid", "strokeStyle": "#000"}
 [t]: {"a2s:delref": true, "fill": "transparent", "fillStyle": "solid", "strokeStyle": "#000"}
 [w]: {"a2s:delref": true, "fill": "#fff", "fillStyle": "solid", "strokeStyle": "#000"}
+[db]: {"a2s:delref": true, "fill": "#1e8490", "fillStyle": "solid", "strokeStyle": "#000"}
 ```
 
 <!-- section 10 -->
@@ -558,7 +559,7 @@ Source: `<a href="https://coreos.com/blog/introducing-operators.html">`{=html}co
 
 <!-- section 22 -->
 
-# FALLING OUT OVER DATA MANAGEMENT {#falling-out-over-data-management bg="#97dce7"}
+# FALLING OUT OVER STATE MANAGEMENT {#falling-out-over-state-management bg="#97dce7"}
 
 ``` {.render_a2sketch}
      #-----------------------------------------------------------#
@@ -664,7 +665,7 @@ Source: `<a href="https://twitter.com/kelseyhightower/status/1164194470436302848
      | #-------------------------#   #-------------------------# |                  -#          |
      |           #----------------------------------#            |              -#              |
      |           |[w]                               |            |               |        plan, |
-     |           |              EKS                 |            | reconciliation|       apply, |
+     |           |              AKS                 |            | reconciliation|       apply, |
      |           |                                  |            |     loop      |   save state |
      |           #----------------------------------#            |              -#              |
      | #-------------------------#   #-------------------------# |                  -#          |
@@ -723,7 +724,7 @@ Source: `<a href="https://twitter.com/kelseyhightower/status/1164194470436302848
      | #-------------------------#   #-------------------------# |                  -#          |
      |           #----------------------------------#            |              -#              |
      |           |[w]                               |            |    open source|  proprietary |
-     |           |              EKS                 |            |    less sticky|       sticky |
+     |           |              AKS                 |            |    less sticky|       sticky |
      |           |                                  |            |    less mature|       mature |
      |           #----------------------------------#            |              -#              |
      | #-------------------------#   #-------------------------# |                  -#          |
@@ -782,7 +783,7 @@ Source: `<a href="https://twitter.com/kelseyhightower/status/1164194470436302848
      | #-------------------------#   #-------------------------# |     -#              |               |
      |           #----------------------------------#            |      |              |               |
      |           |[w]                               |            | RBAC |  IAM         |               |
-     |           |              EKS                 |            | CNI  |  NSGs & FWs  |  Terraform    |
+     |           |              AKS                 |            | CNI  |  NSGs & FWs  |  Terraform    |
      |           |                                  |            | CSI  |  Blob/Block/ |  (1000+ lines)|
      |           #----------------------------------#            |      |        Files |               |
      | #-------------------------#   #-------------------------# |     -#              |               |
@@ -876,7 +877,7 @@ This is arguably far more valuable than the reduction in cloud stickiness and lo
 |                                                                     |
 |  Can the PostgreSQL operator match the availability and durability  |
 |                                                                     |
-|  guarantees of RDS?                                                 |
+|  guarantees of managed SQL Server DBs?                              |
 |                                                                     |
 |                                                                     |
 |                                                                     |
@@ -888,7 +889,7 @@ This is arguably far more valuable than the reduction in cloud stickiness and lo
             |                                                                     |
             |  Not today, no. It is worth considering, though, that:              |
             |                                                                     |
-            |  * RDS and the operator use the same AWS storage primitives         |
+            |  * RDS and the operator use the same Azure storage primitives       |
             |                                                                     |
             |  * Until this improves, there's Microsoft's Azure Service Operator  |
             |    for Kubernetes (EventHub, Azure SQL, CosmosDB, Storage Accounts) |
@@ -943,6 +944,18 @@ octant-jx plugin                     RabbitMQ Cluster Operator
 
 <!-- section 31 -->
 
+# WHAT'S IN IT FOR US? {#whats-in-it-for-us bg="#fff44d"}
+
+As with multicloud, the value proposition for the consumer can seem lacklustre, `<br/>`{=html}but there are tangible benefits
+
+Create one path to production for all workloads (not three separate ones for containers, functions and VMs)
+
+Enabling zero trust and mutual TLS is much easier, and again you only do it once
+
+Continuous reconciliation based on policies you define beats defining desired state at the start and hoping for the best
+
+<!-- section 32 -->
+
 # SUMMARY {#summary .light-on-dark bg="#6a2469"}
 
 Persistent cloud storage is just as reliable when claimed by a pod
@@ -951,9 +964,9 @@ The core Kuberenetes interfaces will continue to mature because everyone in the 
 
 The operator pattern is set to thrive because software companies and second-tier cloud vendors depend on it
 
-Of all the large, distributed systems found in modern application architectures, only Kubernetes promises a huge reduction in complexity in return
+Of all the large, distributed systems found in modern application architectures, only Kubernetes promises a significant reduction in complexity in return
 
-<!-- section 32 -->
+<!-- section 33 -->
 
 # THANK YOU {#thank-you .light-on-dark bgcss="tw-colorful"}
 

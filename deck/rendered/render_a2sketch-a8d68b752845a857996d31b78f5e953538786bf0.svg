@@ -27,7 +27,7 @@
         Can the PostgreSQL operator match the availability and durability
     </text>
     <text id="text1" x="26.1" y="124.8" fill="#fff" stroke="none" font-family="xkcd Script" font-size="120%">
-        guarantees of RDS?
+        guarantees of managed SQL Server DBs?
     </text>
     <text id="text2" x="134.1" y="284.8" fill="#fff" stroke="none" font-family="xkcd Script" font-size="120%">
         Not today, no. It is worth considering, though, that:
@@ -36,7 +36,7 @@
         *
     </text>
     <text id="text4" x="152.1" y="316.8" fill="#fff" stroke="none" font-family="xkcd Script" font-size="120%">
-        RDS and the operator use the same AWS storage primitives
+        RDS and the operator use the same Azure storage primitives
     </text>
     <text id="text5" x="134.1" y="348.8" fill="#fff" stroke="none" font-family="xkcd Script" font-size="120%">
         *

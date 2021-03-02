@@ -1,11 +1,14 @@
 ---
 title: Stateful Kubernetes
 pdf: stateful-kubernetes.pdf
+pdf_size: 1280x720
+pdf_delay: 100
 slideNumber: false
 controls: false
 backgroundTransition: fade
 transition: slide
 progress: false
+standalone: true
 ---
 
 # STATEFUL KUBERNETES {bgcss=tw-colorful .light-on-dark}
@@ -253,7 +256,7 @@ Kubernetes->"CoreOS Tectonic" : Custom Resource Definitions
 |                             Role-based access control                                |
 |                                                                                      |
 #----------------------------#----------------------------#----------------------------#
-|[w]                         |[d]                         |[e]                         |
+|[d]                         |[d]                         |[e]                         |
 |Container runtime interface |Container network interface |Container storage interface |
 |                            |                            |                            |
 #----------------------------#----------------------------#----------------------------#
@@ -265,6 +268,8 @@ Kubernetes->"CoreOS Tectonic" : Custom Resource Definitions
 [e]: {"a2s:delref": true, "fill": "#00aa5b", "fillStyle": "solid", "strokeStyle": "#000"}
 [t]: {"a2s:delref": true, "fill": "transparent", "fillStyle": "solid", "strokeStyle": "#000"}
 [w]: {"a2s:delref": true, "fill": "#fff", "fillStyle": "solid", "strokeStyle": "#000"}
+[db]: {"a2s:delref": true, "fill": "#1e8490", "fillStyle": "solid", "strokeStyle": "#000"}
+
 ```
 
 # ECOSYSTEM RESILIENCE {bg=#6a2469 .light-on-dark}
@@ -520,7 +525,7 @@ PostgreSQL operator<br/>
 
 # SOUL-SEARCHING AT THE BAZAAR {bg=#6a2469 .light-on-dark}
 
-# FALLING OUT OVER DATA MANAGEMENT {bg=#97dce7}
+# FALLING OUT OVER STATE MANAGEMENT {bg=#97dce7}
 
 ```render_a2sketch
      #-----------------------------------------------------------#
@@ -620,7 +625,7 @@ In 2016 MongoDB Inc. responded with the <a href="https://www.mongodb.com/communi
      | #-------------------------#   #-------------------------# |                  -#          |
      |           #----------------------------------#            |              -#              |
      |           |[w]                               |            |               |        plan, |
-     |           |              EKS                 |            | reconciliation|       apply, |
+     |           |              AKS                 |            | reconciliation|       apply, |
      |           |                                  |            |     loop      |   save state |
      |           #----------------------------------#            |              -#              |
      | #-------------------------#   #-------------------------# |                  -#          |
@@ -674,7 +679,7 @@ In 2016 MongoDB Inc. responded with the <a href="https://www.mongodb.com/communi
      | #-------------------------#   #-------------------------# |                  -#          |
      |           #----------------------------------#            |              -#              |
      |           |[w]                               |            |    open source|  proprietary |
-     |           |              EKS                 |            |    less sticky|       sticky |
+     |           |              AKS                 |            |    less sticky|       sticky |
      |           |                                  |            |    less mature|       mature |
      |           #----------------------------------#            |              -#              |
      | #-------------------------#   #-------------------------# |                  -#          |
@@ -728,7 +733,7 @@ In 2016 MongoDB Inc. responded with the <a href="https://www.mongodb.com/communi
      | #-------------------------#   #-------------------------# |     -#              |               |
      |           #----------------------------------#            |      |              |               |
      |           |[w]                               |            | RBAC |  IAM         |               |
-     |           |              EKS                 |            | CNI  |  NSGs & FWs  |  Terraform    |
+     |           |              AKS                 |            | CNI  |  NSGs & FWs  |  Terraform    |
      |           |                                  |            | CSI  |  Blob/Block/ |  (1000+ lines)|
      |           #----------------------------------#            |      |        Files |               |
      | #-------------------------#   #-------------------------# |     -#              |               |
@@ -817,7 +822,7 @@ This is arguably far more valuable than the reduction in cloud stickiness and lo
 |                                                                     |
 |  Can the PostgreSQL operator match the availability and durability  |
 |                                                                     |
-|  guarantees of RDS?                                                 |
+|  guarantees of managed SQL Server DBs?                              |
 |                                                                     |
 |                                                                     |
 |                                                                     |
@@ -829,7 +834,7 @@ This is arguably far more valuable than the reduction in cloud stickiness and lo
             |                                                                     |
             |  Not today, no. It is worth considering, though, that:              |
             |                                                                     |
-            |  * RDS and the operator use the same AWS storage primitives         |
+            |  * RDS and the operator use the same Azure storage primitives       |
             |                                                                     |
             |  * Until this improves, there's Microsoft's Azure Service Operator  |
             |    for Kubernetes (EventHub, Azure SQL, CosmosDB, Storage Accounts) |
@@ -879,6 +884,15 @@ octant-jx plugin                     RabbitMQ Cluster Operator
 
 ```
 
+# WHAT'S IN IT FOR US?  {bg=#fff44d}
+As with multicloud, the value proposition for the consumer can seem lacklustre, <br/>but there are tangible benefits
+
+Create one path to production for all workloads (not three separate ones for containers, functions and VMs)
+
+Enabling zero trust and mutual TLS is much easier, and again you only do it once
+
+Continuous reconciliation based on policies you define beats defining desired state at the start and hoping for the best
+
 # SUMMARY {bg=#6a2469 .light-on-dark}
 
 Persistent cloud storage is just as reliable when claimed by a pod
@@ -887,7 +901,7 @@ The core Kuberenetes interfaces will continue to mature because everyone in the 
 
 The operator pattern is set to thrive because software companies and second-tier cloud vendors depend on it
 
-Of all the large, distributed systems found in modern application architectures, only Kubernetes promises a huge reduction in complexity in return
+Of all the large, distributed systems found in modern application architectures, only Kubernetes promises a significant reduction in complexity in return
 
 
 # THANK YOU {bgcss=tw-colorful .light-on-dark}
